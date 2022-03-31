@@ -1,0 +1,121 @@
+.navbar {
+    background: linear-gradient(90deg, rgb(118, 138, 169) 0%, rgb(118, 138, 169) 100%);
+    height: 80px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.2rem;
+    position: sticky;
+    top: 0;
+    z-index: 999;
+  }
+  
+.navbar-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: auto;
+}
+
+.fa-typo3 {
+    font-size: 1.8rem;
+    text-decoration: none;
+    color: #F5F5DC;
+}
+
+.menu-icon {
+    right: 20px;
+}
+
+.nav-menu {
+    color:#F5F5DC;
+    display: grid;
+    grid-template-columns: repeat(4, auto);
+    grid-gap: 15px;
+    list-style: square;
+    width: 60vw;
+    justify-content: end;
+    margin-right: 2rem;
+    text-decoration: none;
+}
+
+.nav-item {
+    height: 80px;
+  }
+
+/* 控制点击更多之后的字体*/
+.nav-links {
+    color: #F5F5DC;
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    padding: 0.5rem 1rem;
+    height: 100%;
+    transition: cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+.nav-links:hover {
+    border-bottom: 4px solid #F5F5DC;
+    transition: all 0.2s ease-out;
+  }
+
+
+.menu-icon {
+  display: none;
+}
+
+
+@media screen and (max-width: 960px) {
+    /* 滚轴效果: when screen sie < 960px, not display menu bars */
+    .NavbarItems {
+        position: relative;
+      }
+
+    .nav-menu {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        height: 93vh;
+        position: absolute;
+        top: 60px;
+        left: -100%;
+        opacity: 1;
+        transition: all 0.5s ease;
+    }
+    /* nav-menu.active 控制怎样滑动的效果*/
+    .nav-menu.active {
+        background: rgb(118, 138, 169);
+        left: 0;
+        opacity: 1;
+        transition: all 0.5s ease;
+        z-index: 1;
+    }
+      
+    .menu-icon {
+        display: block;
+        position: absolute;
+        top: 0;
+        right: 0;
+    }
+
+    /* nav-links: 控制缩小版的 navigation bar links*/
+    .nav-links {
+        padding: 2rem;
+        display: table;
+        
+    }
+
+    .nav-links:hover {
+        background-color: #F5F5DC;
+        color: rgb(118, 138, 169);
+        border-radius: 0;
+    }
+
+    .menu-icon {
+        right: 1rem;
+        top: 1rem;
+        font-size: 2rem;
+      }
+    
+
+}
