@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 
-const SignUpForm = ({
+const LoginForm = ({
   onSubmit,
   onChange,
   username,
@@ -12,8 +12,8 @@ const SignUpForm = ({
 }) => {
 
   return (
-    <div className='signup-container'>
-      <h1> Sign Up Here</h1>
+    <div className='login-container'>
+      <h1> Login Here</h1>
       {errors.message && <p style={{ color: "red" }}>{errors.message}</p>}
       <form onSubmit={onSubmit}>
         <TextField
@@ -52,17 +52,18 @@ const SignUpForm = ({
         <Button 
           variant="contained" 
           color="primary" 
-          className="sign-up-submit"
+          className="login-submit"
           type="submit"
+          to="/"
         > Submit </Button>
       </form> 
       <p>
-      <br />Already have an account? <br />
-        <a href='/login'> Log in here</a>
+      <br />Problem logging in? <br />
+        <a href='/signup'> Sign up here</a>
       </p>
     </div>
   );
 };
 
 
-export default SignUpForm;
+export default LoginForm;

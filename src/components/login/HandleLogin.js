@@ -1,29 +1,35 @@
 import React, { useState, useEffect } from "react";
-import SignUpForm2 from "./SignUpForm";
-
+import LoginForm from "./LoginForm";
+import { LoginUser } from "../../services/LoginService"
+import { useNavigate } from "react-router-dom";
 
 
 function HandleLogin() {
-
+    let navigate = useNavigate();
+    const [formErrors, setFormErrors] = useState({});
+    const [isSubmit, setIsSumbit] = useState(false);
     const [formValues, setFormValues] = useState({
         username: "",
         email: "",
-        password: "",
-      });
-
-    const [formErrors, setFormErrors] = useState({});
-    const [isSubmit, setIsSumbit] = useState(false);
-      
+        password: ""
+    });
     const handleChange = (event) => {
         const name = event.target.name;
         const value = event.target.value;
         setFormValues({...formValues, [name]: value});
     };
 
-    const handleSubmit = (event) => {
+    const handleSubmit = async (event) => {
         event.preventDefault();
         setFormErrors(validateForm(formValues));
-        setIsSumbit(true);
+        let jsonData = await LoginUser(formValues);
+        setIsSumbit(jsonData);
+        if (jsonData == true) {
+            navigate("/login/success");
+        }
+        else {
+            navigate("/login/failure");
+        }
     };
 
     useEffect(() => { 
@@ -32,15 +38,23 @@ function HandleLogin() {
         }
     }, [formErrors]);
 
-
     const validateForm = (values) => {
-        //TODO
+        const errors = {};
+        if (!values.username) {
+            errors.username = 'Username is required';
+        }
+        if (!values.email) {
+            errors.email = 'Email is required';
+        }
+        if (!values.password) {
+            errors.password = 'Password is required';
+        }
+        return errors;
     };
-
 
     return (
         <div>
-            <SignUpForm2 
+            <LoginForm 
             onSubmit = {handleSubmit}
             onChange = {handleChange}
             username = {formValues.username}

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
-import SignUpForm2 from "./SignUpForm";
-
+import SignUpForm from "./SignUpForm";
+import { SignUpUser } from "../../services/SignupService"
 
 
 function HandleSignup() {
@@ -24,17 +24,19 @@ function HandleSignup() {
         event.preventDefault();
         setFormErrors(validateForm(formValues));
         setIsSumbit(true);
+
     };
 
     useEffect(() => { 
         if (Object.keys(formErrors).length == 0 && isSubmit) {
+            SignUpUser(formValues);
             console.log(formValues);
         }
     }, [formErrors]);
 
 
     const validateForm = (values) => {
-        const errors = {};
+        let errors = {};
         const regex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i;
         if (!values.username) {
             errors.username = 'Username is required';
@@ -60,7 +62,7 @@ function HandleSignup() {
 
     return (
         <div>
-            <SignUpForm2 
+            <SignUpForm 
             onSubmit = {handleSubmit}
             onChange = {handleChange}
             username = {formValues.username}

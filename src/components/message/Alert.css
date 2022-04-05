@@ -1,0 +1,9 @@
+.alert-container {
+    width: 50%;
+    text-align: center;
+    position: relative;
+    left: 50%;
+    top: 50px;
+    transform: translate(-50%, 20%);
+    padding: 10px;
+}
