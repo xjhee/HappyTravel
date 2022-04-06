@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from "react";
 import SignUpForm from "./SignUpForm";
 import { SignUpUser } from "../../services/SignupService"
+import { useNavigate } from "react-router-dom";
 
 
 function HandleSignup() {
-
+    let navigate = useNavigate();
     const [formValues, setFormValues] = useState({
         username: "",
         email: "",
@@ -24,6 +25,10 @@ function HandleSignup() {
         event.preventDefault();
         setFormErrors(validateForm(formValues));
         setIsSumbit(true);
+        if (formErrors.length == 0) {
+            navigate("/signup/success");
+        }
+        navigate("/signup/failure")
 
     };
 

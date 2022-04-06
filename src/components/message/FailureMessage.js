@@ -1,10 +1,12 @@
 import React from "react";
 import Alert from "./Alert"
 
-function FailureMessage() {
+function FailureMessage(props) {
+    const eventName = props.eventName;
+
     return (
     <Alert severity="error">
-        Login Failed
+        {eventName} Failed
     </Alert>
     )
 

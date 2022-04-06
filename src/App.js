@@ -22,7 +22,7 @@ function App() {
         <Route path="/" exact element={<Home />} /> 
         <Route path="/nearby" element={<Nearby />} />
         <Route path="/people" element={<People />} />
-        <Route path="/signup" element={<Signup />} />
+        <Route path="/signup/*" exact element={<Signup />} />
         <Route path="/login/*" exact element={<Login />} />
       </Routes>
     </Router>

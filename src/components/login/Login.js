@@ -14,8 +14,8 @@ function Login() {
         <>
         <HandleLogin />
         <Routes>
-            <Route path="/success" exact element={<SuccessMessage/>} />
-            <Route path="/failure" exact element={<FailureMessage/>} />
+            <Route path="/success" exact element={<SuccessMessage eventName='Login'/>} />
+            <Route path="/failure" exact element={<FailureMessage eventName='Login'/>} />
         </Routes>
         <Footer />
         </>

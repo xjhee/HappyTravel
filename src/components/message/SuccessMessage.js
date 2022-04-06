@@ -1,10 +1,11 @@
 import React from "react";
 import Alert from "./Alert"
 
-function SuccessMessage() {
+function SuccessMessage(props) {
+    const eventName = props.eventName;
     return (
     <Alert severity="success">
-        Login Succeed
+        {eventName} Succeed
     </Alert>
     )
 
