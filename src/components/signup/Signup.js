@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import HandleSignup from './HandleSignup';
 import Footer from '../Footer';
 import './SignupForm.css';
