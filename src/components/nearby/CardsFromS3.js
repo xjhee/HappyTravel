@@ -3,7 +3,6 @@ import '../home/Cards.css';
 import CardItem from '../CardItem';
 import { useState } from "react";
 import GetEventsService from "../../services/GetEventsService"
-import {Buffer} from 'buffer';
 
 /*
 Temp file: 
@@ -36,14 +35,14 @@ function RenderNearby(props) {
         <>
             <h2> {props.destination} </h2>
                 <ul className='cards__items'>
-                    
-                    <CardItem 
-                        src={images.image} 
-                        label={images.label}
-                        path='/signup'
-                        text={images.text}
-                    />
-
+                    {images.map((image, index) => (
+                        <CardItem 
+                            src={image.image}
+                            path={image.label}
+                            label={image.label}
+                            text={image.text}
+                        />
+                    ))}
                 </ul>
                 <br/>
                 <br/>

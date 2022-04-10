@@ -3,6 +3,10 @@ import '../home/Cards.css';
 import CardItem from '../CardItem';
 import { useState } from "react";
 
+/*
+Depreciated version: read image from postgres db
+*/
+
 function Cards() {
     const city = ['asia', 'europe', 'north-america']
     return (
