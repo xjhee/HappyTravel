@@ -1,13 +1,17 @@
 const baseUrl = "http://localhost:8081/events/"
 
 // Fetch events from backend by region 
-async function GetEventsService(destination) {
-    let hostData  = await fetch(baseUrl + destination)
+export async function GetEventsService(destination) {
+    let hostData  = await fetch(baseUrl + 'region=' + destination)
     let hostJson = await hostData.json();
     return hostJson
-}
+};
 
-export default GetEventsService;
+export async function GetEventsByUserService(userName) {
+    let hostData  = await fetch(baseUrl + 'username=' + userName)
+    let hostJson = await hostData.json();
+    return hostJson
+};
 
 
 

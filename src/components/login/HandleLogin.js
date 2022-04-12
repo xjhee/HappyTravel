@@ -4,10 +4,11 @@ import { LoginUser } from "../../services/LoginService"
 import { useNavigate } from "react-router-dom";
 
 
-function HandleLogin() {
+function HandleLogin(props) {
     let navigate = useNavigate();
     const [formErrors, setFormErrors] = useState({});
     const [isSubmit, setIsSumbit] = useState(false);
+    const [isAuth, setIsAuth] = useState(false);
     const [formValues, setFormValues] = useState({
         username: "",
         email: "",
@@ -25,9 +26,14 @@ function HandleLogin() {
         let jsonData = await LoginUser(formValues);
         setIsSumbit(jsonData);
         if (jsonData == true) {
-            navigate("/login/success");
+            setIsAuth(true);
+            props.setAuth(true);
+            props.setUser(formValues.username)
+            navigate("/profile");
         }
         else {
+            setIsAuth(false);
+            props.setAuth(false);
             navigate("/login/failure");
         }
     };

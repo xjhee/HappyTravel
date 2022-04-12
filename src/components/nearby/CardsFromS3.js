@@ -2,7 +2,7 @@ import React from 'react';
 import '../home/Cards.css';
 import CardItem from '../CardItem';
 import { useState } from "react";
-import GetEventsService from "../../services/GetEventsService"
+import { GetEventsService } from "../../services/GetEventsService"
 
 /*
 Temp file: 
