@@ -2,7 +2,8 @@ import React, { useState, useEffect } from "react";
 import LoginForm from "./LoginForm";
 import { LoginUser } from "../../services/UsersService"
 import { useNavigate } from "react-router-dom";
-
+import { object } from "prop-types";
+import Cookies from 'js-cookie'
 
 function HandleLogin(props) {
     let navigate = useNavigate();
@@ -18,6 +19,7 @@ function HandleLogin(props) {
         const name = event.target.name;
         const value = event.target.value;
         setFormValues({...formValues, [name]: value});
+        props.setUser(formValues.username)
     };
 
     const handleSubmit = async (event) => {
@@ -25,11 +27,12 @@ function HandleLogin(props) {
         setFormErrors(validateForm(formValues));
         let jsonData = await LoginUser(formValues);
         setIsSumbit(jsonData);
+        console.log(jsonData)
         if (jsonData == true) {
             setIsAuth(true);
             props.setAuth(true);
-            props.setUser(formValues.username)
-            navigate("/profile");
+            Cookies.set(formValues.username, "loginTrue")
+            navigate("/");
         }
         else {
             setIsAuth(false);
@@ -39,6 +42,7 @@ function HandleLogin(props) {
     };
 
     useEffect(() => { 
+        localStorage.setItem('login-item', JSON.stringify(formValues))
         if (Object.keys(formErrors).length == 0 && isSubmit) {
             console.log(formValues);
         }

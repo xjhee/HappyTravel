@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button } from './home/Button'
+import { Button } from './Button'
 import './HeroSection.css' 
 
 function HeroSection() {
@@ -17,6 +17,7 @@ function HeroSection() {
                 className='hero-btns' 
                 buttonStyle='btn--primary'
                 buttonSize='btn--large'
+                to='signup'
                 >
                     Get Started
                 </Button>
@@ -24,6 +25,7 @@ function HeroSection() {
                 className='hero-btns' 
                 buttonStyle='btn--primary'
                 buttonSize='btn--large'
+                to='signup'
                 >
                     Play again <i className='far fa-play-circle' />
                 </Button>

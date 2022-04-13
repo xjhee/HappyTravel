@@ -1,9 +1,9 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useState } from "react";
 import CardItem from '../CardItem';
-import { GetUserInfoByName } from "../../services/UsersService"
-import { GetEventsByUserService } from "../../services/GetEventsService"
-
+import { GetUserInfoByName } from "../../services/UsersService";
+import { GetEventsByUserService } from "../../services/GetEventsService";
+import { v4 as uuid } from 'uuid';
 /*
 TODO: 
 1. add follower, following info
@@ -47,36 +47,38 @@ const HandleProfile = ({userName}) => {
           </div>
         </div>
       </div>
-      <br />
-      <br />
-      <div>
-          <RenderUser username={userName} />
+      <div className='posts'>
+        <RenderUser username={userName} />
       </div>
     </div>
   )
 };
 
-
 function RenderUser(props) {
   const [userimages, setUserImages] = useState([]);
+  useEffect(() => {
+    const jsonDataArray = async () => {
+      const data = await GetEventsByUserService(props.username);
+      setUserImages(data);
+    }
+    jsonDataArray().catch(console.error);
+  }, []);
 
-  const handleUserImages = async (username) => {
-      let jsonDataArray = await GetEventsByUserService(username);
-      setUserImages(jsonDataArray);
-  };
-  handleUserImages(props.username);
+
   return (
       <>
-        <ul className='cards__items'>
-            {userimages.map((image, index) => (
-                <CardItem 
-                    src={image.image}
-                    path={image.label}
-                    label={image.label}
-                    text={image.text}
-                />
-            ))}
-        </ul>
+        <h4> Your Posts</h4>
+          <ul className='cards__items'>
+              {userimages.map((image, index) => (
+                  <CardItem 
+                      key={uuid()}
+                      src={image.image}
+                      path={image.label}
+                      label={image.label}
+                      text={image.text}
+                  />
+              ))}
+          </ul>
       </>
   
   );
