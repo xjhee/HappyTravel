@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from "react";
 import SignUpForm from "./SignUpForm";
 import { SignUpUser } from "../../services/SignupService"
+import { GetUserInfoByName } from "../../services/UsersService"
 import { useNavigate } from "react-router-dom";
 
 
 function HandleSignup() {
     let navigate = useNavigate();
+    const [userExist, setUserExist] = useState(false);
     const [formValues, setFormValues] = useState({
         username: "",
         email: "",
@@ -14,7 +16,7 @@ function HandleSignup() {
 
     const [formErrors, setFormErrors] = useState({});
     const [isSubmit, setIsSumbit] = useState(false);
-      
+    
     const handleChange = (event) => {
         const name = event.target.name;
         const value = event.target.value;
@@ -32,10 +34,16 @@ function HandleSignup() {
 
     };
 
+    const handleUserExists = async(username) => {
+        let jsonData = await GetUserInfoByName(username);
+        if (jsonData) {
+            setUserExist(true);
+        }
+      };
+
     useEffect(() => { 
         if (Object.keys(formErrors).length == 0 && isSubmit) {
             SignUpUser(formValues);
-            console.log(formValues);
         }
     }, [formErrors]);
 
@@ -43,8 +51,12 @@ function HandleSignup() {
     const validateForm = (values) => {
         let errors = {};
         const regex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i;
+        handleUserExists(formValues.username);
         if (!values.username) {
             errors.username = 'Username is required';
+        }
+        else if (userExist == true) {
+            errors.username = 'This user is already registered'
         }
         if (!values.email) {
             errors.email = 'Email is required';

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import LoginForm from "./LoginForm";
-import { LoginUser } from "../../services/LoginService"
+import { LoginUser } from "../../services/UsersService"
 import { useNavigate } from "react-router-dom";
 
 
