@@ -31,14 +31,12 @@ function App() {
   };
 
   useEffect(() => {
-    if (user) {
-      localStorage.setItem('user', user);
-    }
     readCookie();
   }, []);
 
   console.log('authCookie', authCookie)
   console.log('auths', auth)
+  console.log('user', user)
   return (
     <>
     <AuthApi.Provider value={{authCookie, setAuthCookie}}>

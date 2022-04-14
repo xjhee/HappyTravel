@@ -10,6 +10,7 @@ function LogOut(props) {
     const handleOnClick = () => {
         Auth.setAuthCookie(false);
         Cookies.remove(props.userName);
+        localStorage.clear();
         navigate("/signup");
     }
     return (

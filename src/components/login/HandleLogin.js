@@ -31,7 +31,7 @@ function HandleLogin(props) {
         if (jsonData == true) {
             setIsAuth(true);
             props.setAuth(true);
-            Cookies.set(formValues.username, "loginTrue")
+            Cookies.set(formValues.username, "loginTrue");
             navigate("/");
         }
         else {
@@ -42,7 +42,7 @@ function HandleLogin(props) {
     };
 
     useEffect(() => { 
-        localStorage.setItem('login-item', JSON.stringify(formValues))
+        localStorage.setItem("user", formValues.username)
         if (Object.keys(formErrors).length == 0 && isSubmit) {
             console.log(formValues);
         }
