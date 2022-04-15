@@ -4,6 +4,7 @@ import CardItem from '../CardItem';
 import { GetUserInfoByName } from "../../services/UsersService";
 import { GetEventsByUserService } from "../../services/GetEventsService";
 import { v4 as uuid } from 'uuid';
+import { Button } from '../home/Button';
 /*
 TODO: 
 1. add follower, following info
@@ -45,6 +46,14 @@ const HandleProfile = ({userName}) => {
             <h5>40 followers</h5>
             <h5>40 following</h5>
           </div>
+        </div>
+        <div style={{
+          display: 'inline-block',
+          margin: '30px 60px',
+          padding: '20px',
+          float: 'center'
+        }}>
+          <Button buttonStyle='btn--primary' to='post'> Post your destination </Button>
         </div>
       </div>
       <div className='posts'>

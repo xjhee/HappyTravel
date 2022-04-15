@@ -12,7 +12,6 @@ function Nearby() {
     return (
         <>
         <Cards />
-        <Footer />
         </>
     )
 }

@@ -16,6 +16,7 @@ import NotFoundMessage from './components/message/NotFoundMessage';
 import Cookies from 'js-cookie';
 import AuthApi from './AuthApi';
 import LogOut from './components/logout/Logout';
+import Footer from './components/Footer';
 
 function App() {
   const [auth, setAuth] = useState(false);
@@ -50,6 +51,7 @@ function App() {
           exact
           element={<Login auth={auth} setAuth={setAuth} user={user} setUser={setUser}/>}
         />
+        <Route path="/nearby" element={<Nearby />} />
         <Route path="/signup/*" exact element={<Signup />} />
         </>
       )}
@@ -57,13 +59,14 @@ function App() {
       {authCookie && (
         <>
         <Route path="" exact element={<Home />} />
-        <Route path="/profile" element={<Profile userName={localStorage.getItem('user')}/>} />
+        <Route path="/profile/*" element={<Profile userName={localStorage.getItem('user')}/>} />
         <Route path="/nearby" element={<Nearby />} />
         <Route path="/logout" element={<LogOut userName={localStorage.getItem('user')} />} />
         </>
       )}
       <Route path="*" element={<NotFoundMessage eventName='Page' />} />
     </Routes>
+    <Footer />
     </AuthApi.Provider>
     </>
   );

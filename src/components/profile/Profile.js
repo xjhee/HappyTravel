@@ -1,12 +1,15 @@
 import React from 'react';
 import HandleProfile from './HandleProfile';
-import Footer from '../Footer';
+import { Routes, Route } from 'react-router-dom';
+import PostEvent from '../post/PostEvent';
 
 function Profile({userName}) {
   return (
     <>
-    <HandleProfile userName={userName}/>
-    <Footer />
+    <Routes>
+      <Route path="/" element={<HandleProfile userName={userName}/>} />
+      <Route path="/post" element={<PostEvent userName={userName}/>} />
+    </Routes>
     </>
   )
 }

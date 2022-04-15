@@ -46,13 +46,8 @@ function Navbar(props) {
                                     Nearby
                                 </Link>
                             </li>
-                            <li className="nav-item">
-                                <Link to="/profile" className="nav-links" onClick={closeMobileMeuu}>
-                                    Profile
-                                </Link>
-                            </li>
                         </ul>
-                        {button && <Button buttonStyle='btn-outline' to='signup'> Sign Up </Button>}
+                        {button && <Button buttonStyle='btn-outline' to='login'> Log In </Button>}
     
     
                     </div>
