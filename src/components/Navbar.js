@@ -4,7 +4,7 @@ import { BrowserRouter as Router, Link } from "react-router-dom";
 import './Navbar.css'; 
 
 
-function Navbar() {
+function Navbar(props) {
     const [click, setClick] = useState(false);
     const handleClick = () => setClick(!click); //reverse click to false-true
     const closeMobileMeuu = () => setClick(false);
@@ -22,11 +22,40 @@ function Navbar() {
         showButton();
     }, []);
    
-    /* document.addEventListener(event, function) 
-    here add event listener to keep track of "log in" button
-    */
-    window.addEventListener('resize', showButton);
 
+    window.addEventListener('resize', showButton);
+    if (props.auth == false) {
+        return (
+            <>
+                <nav className="navbar">
+                    <div className="navbar-container">
+                        <Link to="/" className="fab fa-typo3" >
+                            BTS <i className="fab fa-typo3" />
+                        </Link>
+                        <div className="menu-icon" onClick={handleClick}>
+                            <i className={click ? "fas fa-times":  "fas fa-bars"} />
+                        </div>
+                        <ul className={click ? 'nav-menu active': "nav-menu"}>
+                            <li className="nav-item">
+                                <Link to="/" className="nav-links" onClick={closeMobileMeuu}>
+                                    Home
+                                </Link>
+                            </li>
+                            <li className="nav-item">
+                                <Link to="/nearby" className="nav-links" onClick={closeMobileMeuu}>
+                                    Nearby
+                                </Link>
+                            </li>
+                        </ul>
+                        {button && <Button buttonStyle='btn-outline' to='login'> Log In </Button>}
+    
+    
+                    </div>
+                </nav>
+    
+            </>
+        );
+    }
     return (
         <>
             <nav className="navbar">
@@ -49,19 +78,20 @@ function Navbar() {
                             </Link>
                         </li>
                         <li className="nav-item">
-                            <Link to="/people" className="nav-links" onClick={closeMobileMeuu}>
-                                People
+                            <Link to="/profile" className="nav-links" onClick={closeMobileMeuu}>
+                                Profile
                             </Link>
                         </li>
                     </ul>
-                    {button && <Button buttonStyle='btn-outline'> Sign Up </Button>}
+                    {button && <Button buttonStyle='btn-outline' to='logout'> Log out </Button>}
 
 
                 </div>
             </nav>
 
         </>
-    );
+    )
+    
 }
 
 

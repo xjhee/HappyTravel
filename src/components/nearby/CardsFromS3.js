@@ -1,15 +1,10 @@
 import React from 'react';
 import '../home/Cards.css';
 import CardItem from '../CardItem';
-import { useState } from "react";
-import GetEventsService from "../../services/GetEventsService"
-import {Buffer} from 'buffer';
+import { useState, useEffect } from "react";
+import { GetEventsService } from "../../services/GetEventsService";
+import { v4 as uuid } from 'uuid';
 
-/*
-Temp file: 
-TODO: store images in S3 bucket, and read from there 
-Need to go to amazon service and configure a bit...
-*/
 
 function Cards() {
     const city = ['asia', 'europe', 'north-america']
@@ -26,24 +21,27 @@ function Cards() {
 
 function RenderNearby(props) {
     const [images, setImages] = useState([]);
+    useEffect(() => {
+        const jsonDataArray = async () => {
+            const data = await GetEventsService(props.destination);
+            setImages(data);
+        }
+        jsonDataArray().catch(console.error);
+      }, [])
 
-    const handleImages = async (destination) => {
-        let jsonDataArray = await GetEventsService(destination);
-        setImages(jsonDataArray);
-    };
-    handleImages(props.destination);
     return (
         <>
             <h2> {props.destination} </h2>
                 <ul className='cards__items'>
-                    
-                    <CardItem 
-                        src={images.image} 
-                        label={images.label}
-                        path='/signup'
-                        text={images.text}
-                    />
-
+                    {images.map((image, index) => (
+                        <CardItem 
+                            key={uuid()}
+                            src={image.image}
+                            path={image.label}
+                            label={image.label}
+                            text={image.text}
+                        />
+                    ))}
                 </ul>
                 <br/>
                 <br/>

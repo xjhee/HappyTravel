@@ -1,13 +1,15 @@
 import React, { useState, useEffect } from "react";
 import LoginForm from "./LoginForm";
-import { LoginUser } from "../../services/LoginService"
+import { LoginUser } from "../../services/UsersService"
 import { useNavigate } from "react-router-dom";
+import { object } from "prop-types";
+import Cookies from 'js-cookie'
 
-
-function HandleLogin() {
+function HandleLogin(props) {
     let navigate = useNavigate();
     const [formErrors, setFormErrors] = useState({});
     const [isSubmit, setIsSumbit] = useState(false);
+    const [isAuth, setIsAuth] = useState(false);
     const [formValues, setFormValues] = useState({
         username: "",
         email: "",
@@ -17,6 +19,7 @@ function HandleLogin() {
         const name = event.target.name;
         const value = event.target.value;
         setFormValues({...formValues, [name]: value});
+        props.setUser(formValues.username)
     };
 
     const handleSubmit = async (event) => {
@@ -24,15 +27,22 @@ function HandleLogin() {
         setFormErrors(validateForm(formValues));
         let jsonData = await LoginUser(formValues);
         setIsSumbit(jsonData);
+        console.log(jsonData)
         if (jsonData == true) {
-            navigate("/login/success");
+            setIsAuth(true);
+            props.setAuth(true);
+            Cookies.set(formValues.username, "loginTrue");
+            navigate("/");
         }
         else {
+            setIsAuth(false);
+            props.setAuth(false);
             navigate("/login/failure");
         }
     };
 
     useEffect(() => { 
+        localStorage.setItem("user", formValues.username)
         if (Object.keys(formErrors).length == 0 && isSubmit) {
             console.log(formValues);
         }

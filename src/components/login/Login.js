@@ -9,13 +9,17 @@ import {
     Route
   } from "react-router-dom";
 
-function Login() {
+function Login(props) {
     return (
         <>
-        <HandleLogin />
+        <HandleLogin setAuth = {props.setAuth} setUser = {props.setUser}/>
         <Routes>
-            <Route path="/success" exact element={<SuccessMessage eventName='Login'/>} />
-            <Route path="/failure" exact element={<FailureMessage eventName='Login'/>} />
+            {!props.auth && (
+                <Route path="/success" exact element={<SuccessMessage eventName='Login'/>} />
+            )}
+            {props.auth && (
+                <Route path="/failure" exact element={<FailureMessage eventName='Login'/>} />
+            )}
         </Routes>
         <Footer />
         </>
