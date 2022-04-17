@@ -29,14 +29,27 @@ function HandlePostEvents({userName}) {
     useEffect(() => {
         if (Object.keys(formErrors).length == 0 && isSubmit) {
             PostService(formValues, userName);
+            alert('Submit successfully');
         }
     }, [formErrors]);
 
     const validateForm = (values) => {
         const errors = {};
         const ExistingRegions = ['north-america', 'europe', 'asia']
-        if (ExistingRegions.indexOf(values.region) <= -1) {
+        if (!values.region) {
+            errors.region = 'Region cannot be empty'
+        }
+        else if (ExistingRegions.indexOf(values.region) <= -1) {
             errors.region = 'Region does not exists'
+        }
+        if (!values.text) {
+            errors.text = 'Text cannot be empty'
+        }
+        if (!values.label) {
+            errors.label = 'Label cannot be empty'
+        }
+        if (!values.image) {
+            errors.image = 'Image cannot be empty'
         }
         return errors;
     };
