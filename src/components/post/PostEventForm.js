@@ -36,6 +36,8 @@ const PostEventForm = ({
           onChange={onChange}
           margin="normal"
           fullWidth={true}
+          error={!!errors.text}
+          helperText={errors.text}
         />
         <TextField
           id="outlined-label"
@@ -45,6 +47,8 @@ const PostEventForm = ({
           onChange={onChange}
           margin="normal"
           fullWidth={true}
+          error={!!errors.label}
+          helperText={errors.label}
         />
         <TextField
           id="outlined-image"
@@ -54,6 +58,8 @@ const PostEventForm = ({
           onChange={onChange}
           margin="normal"
           fullWidth={true}
+          error={!!errors.image}
+          helperText={errors.image}
         />
         <Button 
           variant="contained" 

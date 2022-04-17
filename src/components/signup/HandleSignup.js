@@ -44,6 +44,7 @@ function HandleSignup() {
     useEffect(() => { 
         if (Object.keys(formErrors).length == 0 && isSubmit) {
             SignUpUser(formValues);
+            alert('Submit successfully');
         }
     }, [formErrors]);
 
