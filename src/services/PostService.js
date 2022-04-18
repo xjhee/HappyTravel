@@ -1,11 +1,11 @@
 const baseUrl = "http://localhost:8081/events/post"
 
-export const PostService = (formValues, userName) => {
+export const PostService = (formValues, userName, imageUrl) => {
     const post_body = JSON.stringify({
         region: formValues.region,
         text: formValues.text,
         label: formValues.label,
-        image: formValues.image, 
+        image: imageUrl, 
         username: userName
       })
     fetch(baseUrl, {

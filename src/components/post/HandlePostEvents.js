@@ -1,15 +1,16 @@
 import React, { useEffect, useState } from 'react';
 import PostEventForm from './PostEventForm';
 import { PostService } from "../../services/PostService"
+import S3UploadService from '../../services/S3UploadService';
 
 function HandlePostEvents({userName}) {
     const [formValues, setFormValues] = useState({
         region: "",
         text: "", 
         label: "",
-        image: "",
     });
-
+    const [selectedFile, setSelectedFile] = useState();
+    const [s3Url, setS3Url] = useState("");
     const [formErrors, setFormErrors] = useState({});
     const [isSubmit, setIsSumbit] = useState(false);
 
@@ -19,22 +20,46 @@ function HandlePostEvents({userName}) {
         setFormValues({...formValues, [name]: value});
     };
 
+    const handleFileChange = (event) => {
+        const value = event.target.files[0]
+        setSelectedFile(value);
+    };
+
     const handleSubmit = (event) => {
         event.preventDefault();
         setFormErrors(validateForm(formValues));
         setIsSumbit(true);
-
     };
 
     useEffect(() => {
         if (Object.keys(formErrors).length == 0 && isSubmit) {
-            PostService(formValues, userName);
-            alert('Submit successfully');
-        }
-    }, [formErrors]);
+            SetTokenS3()
+            .then((currentS3Url) => {
+                console.log('fetched current s3 url: ', currentS3Url);
+                PostService(formValues, userName, currentS3Url);
+                console.log('posted events to database: ', currentS3Url)
+            })
+            .catch((err) => alert(err)) 
+            .then((res) => alert('Submit successfully'))   
+        } 
+        setIsSumbit(false);
+        
+    }, [formErrors]); 
+
+
+    const SetTokenS3 = async () => {
+        const f = async () => {
+            const dataJson = await S3UploadService(selectedFile, formValues.region);
+            setS3Url(await dataJson.url);
+            return dataJson
+        }; 
+        let data = await f(); 
+        return data
+    };
 
     const validateForm = (values) => {
         const errors = {};
+        
         const ExistingRegions = ['north-america', 'europe', 'asia']
         if (!values.region) {
             errors.region = 'Region cannot be empty'
@@ -48,9 +73,6 @@ function HandlePostEvents({userName}) {
         if (!values.label) {
             errors.label = 'Label cannot be empty'
         }
-        if (!values.image) {
-            errors.image = 'Image cannot be empty'
-        }
         return errors;
     };
 
@@ -59,10 +81,11 @@ function HandlePostEvents({userName}) {
             <PostEventForm 
             onSubmit = {handleSubmit}
             onChange = {handleChange}
+            onFileChange = {handleFileChange}
             region = {formValues.region}
             text = {formValues.text}
             label = {formValues.label}
-            image = {formValues.image}
+            file = {formValues.file}
             errors = {formErrors}
             />
         </div>

@@ -1,14 +1,16 @@
 import React, { useState, useEffect } from "react";
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
+import S3UploadService from "../../services/S3UploadService";
 
 const PostEventForm = ({
   onSubmit,
   onChange,
+  onFileChange,
   region,
   text,
   label,
-  image,
+  file,
   errors
 }) => {
 
@@ -50,21 +52,24 @@ const PostEventForm = ({
           error={!!errors.label}
           helperText={errors.label}
         />
-        <TextField
-          id="outlined-image"
-          label="Image"
-          name="image"
-          value={image}
-          onChange={onChange}
-          margin="normal"
-          fullWidth={true}
-          error={!!errors.image}
-          helperText={errors.image}
-        />
+        <Button
+          variant="contained"
+          component="label"
+          onChange={onFileChange}
+        >
+          Upload File
+          <input
+            id="file"
+            type="file"
+            value={file == null ? '' : file}
+            accept="image/*"
+            onChange={onChange}
+          />
+        </Button>
         <Button 
           variant="contained" 
           color="primary" 
-          className="sign-up-submit"
+          className="post-submit"
           type="submit"
         > Submit </Button>
       </form> 
