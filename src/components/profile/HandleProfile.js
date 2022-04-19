@@ -84,7 +84,7 @@ function RenderUser(props) {
                       src={image.image}
                       path={image.label}
                       label={image.label}
-                      text={image.text}
+                      title={image.title}
                   />
               ))}
           </ul>

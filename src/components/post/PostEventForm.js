@@ -8,6 +8,7 @@ const PostEventForm = ({
   onChange,
   onFileChange,
   region,
+  title,
   text,
   label,
   file,
@@ -29,6 +30,17 @@ const PostEventForm = ({
           fullWidth={true}
           error={!!errors.region}
           helperText={errors.region}
+        />
+        <TextField
+          id="outlined-text"
+          label="Title"
+          name="title"
+          value={title}
+          onChange={onChange}
+          margin="normal"
+          fullWidth={true}
+          error={!!errors.title}
+          helperText={errors.title}
         />
         <TextField
           id="outlined-text"

@@ -51,7 +51,7 @@ function App() {
           exact
           element={<Login auth={auth} setAuth={setAuth} user={user} setUser={setUser}/>}
         />
-        <Route path="/nearby" element={<Nearby />} />
+        <Route path="/nearby/*" element={<Nearby />} />
         <Route path="/signup/*" exact element={<Signup />} />
         </>
       )}
@@ -60,7 +60,7 @@ function App() {
         <>
         <Route path="" exact element={<Home />} />
         <Route path="/profile/*" element={<Profile userName={localStorage.getItem('user')}/>} />
-        <Route path="/nearby" element={<Nearby />} />
+        <Route path="/nearby/*" element={<Nearby />} />
         <Route path="/logout" element={<LogOut userName={localStorage.getItem('user')} />} />
         </>
       )}

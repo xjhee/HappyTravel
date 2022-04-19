@@ -6,6 +6,7 @@ import S3UploadService from '../../services/S3UploadService';
 function HandlePostEvents({userName}) {
     const [formValues, setFormValues] = useState({
         region: "",
+        title: "",
         text: "", 
         label: "",
     });
@@ -67,6 +68,9 @@ function HandlePostEvents({userName}) {
         else if (ExistingRegions.indexOf(values.region) <= -1) {
             errors.region = 'Region does not exists'
         }
+        if (!values.title) {
+            errors.title = 'Title cannot be empty'
+        }
         if (!values.text) {
             errors.text = 'Text cannot be empty'
         }
@@ -83,6 +87,7 @@ function HandlePostEvents({userName}) {
             onChange = {handleChange}
             onFileChange = {handleFileChange}
             region = {formValues.region}
+            title = {formValues.title}
             text = {formValues.text}
             label = {formValues.label}
             file = {formValues.file}

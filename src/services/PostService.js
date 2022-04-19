@@ -3,6 +3,7 @@ const baseUrl = "http://localhost:8081/events/post"
 export const PostService = (formValues, userName, imageUrl) => {
     const post_body = JSON.stringify({
         region: formValues.region,
+        title: formValues.title,
         text: formValues.text,
         label: formValues.label,
         image: imageUrl, 

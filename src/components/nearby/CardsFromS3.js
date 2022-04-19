@@ -37,9 +37,9 @@ function RenderNearby(props) {
                         <CardItem 
                             key={uuid()}
                             src={image.image}
-                            path={image.label}
+                            path={'' + image.id}
                             label={image.label}
-                            text={image.text}
+                            title={image.title}
                         />
                     ))}
                 </ul>
