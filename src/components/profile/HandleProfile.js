@@ -82,7 +82,7 @@ function RenderUser(props) {
                   <CardItem 
                       key={uuid()}
                       src={image.image}
-                      path={image.label}
+                      path={'' + image.id}
                       label={image.label}
                       title={image.title}
                   />
