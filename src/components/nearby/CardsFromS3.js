@@ -1,5 +1,5 @@
 import React from 'react';
-import '../home/Cards.css';
+import './Cards.css';
 import CardItem from '../CardItem';
 import { useState, useEffect } from "react";
 import { GetEventsService } from "../../services/GetEventsService";

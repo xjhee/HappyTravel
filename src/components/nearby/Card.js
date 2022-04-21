@@ -1,5 +1,4 @@
 import React from 'react';
-import '../home/Cards.css';
 import { useState, useEffect } from "react";
 import { GetEventByIdService } from '../../services/GetEventsService';
 
@@ -29,5 +28,4 @@ function Card(props) {
     )
 }
 
-//{Object.values(event).map((key, value) => <h4> {key} </h4>)}
 export default Card;
