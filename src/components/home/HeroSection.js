@@ -25,7 +25,7 @@ function HeroSection() {
                 className='hero-btns' 
                 buttonStyle='btn--primary'
                 buttonSize='btn--large'
-                to='signup'
+                to=''
                 >
                     Play again <i className='far fa-play-circle' />
                 </Button>
