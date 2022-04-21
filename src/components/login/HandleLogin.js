@@ -33,6 +33,7 @@ function HandleLogin(props) {
             props.setAuth(true);
             Cookies.set(formValues.username, "loginTrue");
             navigate("/");
+            window.location.reload();
         }
         else {
             setIsAuth(false);
