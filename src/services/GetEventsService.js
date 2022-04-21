@@ -19,5 +19,10 @@ export async function GetEventByIdService(id) {
     return hostJson
 };
 
+export async function GetEventsCountByUserService(userName) {
+    let hostData  = await fetch(baseUrl + 'username=' + userName)
+    let hostJson = await hostData.json();
+    return hostJson.length
+};
 
 
