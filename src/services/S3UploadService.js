@@ -1,7 +1,7 @@
 
 window.Buffer = window.Buffer || require("buffer").Buffer;
 
-const baseUrl = "http://localhost:8081/api/v1/upload"
+const baseUrl = process.env.REACT_APP_FILE_UPLOAD_URL
 
 async function S3UploadService(file, region) {
     let data = new FormData();

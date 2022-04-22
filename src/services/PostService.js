@@ -1,4 +1,4 @@
-const baseUrl = "http://localhost:8081/events/post"
+const baseUrl = process.env.REACT_APP_EVENTS_URL + "post"
 
 export const PostService = (formValues, userName, imageUrl) => {
     const post_body = JSON.stringify({

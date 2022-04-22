@@ -1,4 +1,4 @@
-const baseUrl = "http://localhost:8081/users/signup"
+const baseUrl = process.env.REACT_APP_USERS_URL + "signup"
 
 
 export const SignUpUser = (formValues) => {

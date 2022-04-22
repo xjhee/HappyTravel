@@ -1,4 +1,4 @@
-const baseUrl = "http://localhost:8081/followers/"
+const baseUrl = process.env.REACT_APP_FOLLOWERS_URL
 
 // Fetch followers from backend by user id 
 export async function GetFollowersService(userId) {
