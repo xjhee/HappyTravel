@@ -1,11 +1,10 @@
-import React, { useEffect } from 'react';
-import { useState } from "react";
+import React, { useState, useEffect } from 'react';
 import CardItem from '../CardItem';
 import { GetUserInfoByName } from "../../services/UsersService";
 import { GetEventsByUserService, GetEventsCountByUserService } from "../../services/GetEventsService";
+import { RenderFollowSectionInfo} from "./HandleFollows"
 import { v4 as uuid } from 'uuid';
 import { Button } from '../home/Button';
-import { GetFollowersService, GetFollowingService } from '../../services/GetFollowersService';
 /*
 TODO: 
 1. add follower, following info
@@ -42,7 +41,7 @@ const HandleProfile = ({userName}) => {
           float: 'center',
         }}>
           <h4>{userName}</h4>
-          <RenderFollower username={userName} />
+          <RenderFollowSectionInfo username={userName} />
         </div>
         <div style={{
           display: 'inline-block',
@@ -90,28 +89,5 @@ function RenderUser(props) {
   );
 }
 
-function RenderFollower(props) {
-  const [postCount, setPostCount] = useState(0);
-  const [followerCount, setFollowerCount] = useState(0);
-  const [followingCount, setFollowingCount] = useState(0);
-  useEffect(() => {
-    const getCount = async () => {
-      const post = await GetEventsCountByUserService(props.username);
-      const follower = await GetFollowersService(props.username);
-      const following = await GetFollowingService(props.username);
-      setPostCount(post);
-      setFollowerCount(follower);
-      setFollowingCount(following);
-    }
-    getCount().catch(console.error);
-  }, []);
-  return (
-    <div style={{display: 'flex', justifyContent: 'space-around', width: '120%'}}>
-      <h5>{postCount} posts</h5>
-      <h5>{followerCount} followers</h5>
-      <h5>{followingCount} following</h5>
-    </div>
-  )
-}
 
 export default HandleProfile;
