@@ -5,6 +5,7 @@ import { GetFollowersCountService,
         GetFollowingsService } from '../../services/GetFollowersService';
 import { GetEventsCountByUserService } from "../../services/GetEventsService";
 import { GetUserInfoByName } from "../../services/UsersService";
+import { v4 as uuid } from 'uuid';
 
 export function RenderFollowSectionInfo(props) {
     const [postCount, setPostCount] = useState(0);
@@ -42,7 +43,7 @@ export function RenderFollowers(props) {
       }, []);
     return (
         <div>
-            {followerList.map((s) => <li> {s.username} </li>)}
+            {followerList.map((s) => <li key={uuid()}> {s.username} </li>)}
         </div>
     )
 };
@@ -58,7 +59,7 @@ export function RenderFollowings(props) {
       }, []);
     return (
         <div>
-            {followingList.map((s) => <li> {s.username} </li>)}
+            {followingList.map((s) => <li key={uuid()}> {s.username} </li>)}
         </div>
     )
 }

@@ -10,7 +10,7 @@ function Cards() {
     const city = ['asia', 'europe', 'north-america']
     return (
         <div className='cards'>
-                {city.map((s) => <RenderNearby destination={s} />)}
+                {city.map((s) => <RenderNearby key={uuid()} destination={s} />)}
             <div className='cards__container'>
                 <div className='cards__wrapper'>
                 </div>
