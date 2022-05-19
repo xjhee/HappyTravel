@@ -40,8 +40,8 @@ const HandleProfile = ({userName}) => {
           padding: '30px',
           float: 'center',
         }}>
-          <h4>{userName}</h4>
-          <RenderFollowSectionInfo username={userName} />
+          <h4 className='content-small'>{userName}</h4>
+          <RenderFollowSectionInfo className='content-impact' username={userName} />
         </div>
         <div style={{
           display: 'inline-block',
@@ -49,7 +49,7 @@ const HandleProfile = ({userName}) => {
           padding: '20px',
           float: 'center'
         }}>
-          <Button buttonStyle='btn--primary' to='post'> Post your destination </Button>
+          <Button className='content-small' buttonStyle='btn--primary' to='post'> Post your destination </Button>
         </div>
       </div>
       <div className='posts'>
@@ -72,7 +72,7 @@ function RenderUser(props) {
 
   return (
       <>
-        <h4> Your Posts</h4>
+        <h4 className='content-small'> Your Posts</h4>
           <ul className='cards__items'>
               {userimages.map((image, index) => (
                   <CardItem 

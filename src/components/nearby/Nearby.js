@@ -24,11 +24,13 @@ function DisplayEventText() {
     let { id } = useParams();
     return (
         <>
-        <h2> Event information as below:</h2>
-        <br />
-            <div>
-                <Card id={id}/>
-            </div>
+        <div>
+            <h2 className='content-impact'> Event information as below:</h2>
+            <br />
+                <div className='content-small'>
+                    <Card id={id}/>
+                </div>
+        </div>
         </>
     )
 };

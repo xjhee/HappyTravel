@@ -4,7 +4,6 @@ import { GetFollowersCountService,
         GetFollowersService, 
         GetFollowingsService } from '../../services/GetFollowersService';
 import { GetEventsCountByUserService } from "../../services/GetEventsService";
-import { GetUserInfoByName } from "../../services/UsersService";
 import { v4 as uuid } from 'uuid';
 
 export function RenderFollowSectionInfo(props) {

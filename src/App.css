@@ -16,3 +16,16 @@
   font-size: 3rem;
 }
 
+.content-impact {
+  font-size: 25px;
+  font-family: 'Comic Sans MS', cursive;
+  margin: 20px 0px;
+  padding: 20px;
+}
+.content-small {
+  font-size: 20px;
+  font-family: 'Courier', cursive;
+  padding: 30px;
+}
+
+

@@ -31,7 +31,7 @@ function RenderNearby(props) {
 
     return (
         <>
-            <h2> {props.destination} </h2>
+            <h2 className='content-impact'> {props.destination} </h2>
                 <ul className='cards__items'>
                     {images.map((image, index) => (
                         <CardItem 

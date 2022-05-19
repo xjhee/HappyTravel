@@ -6,22 +6,25 @@ import HandleLogin from './HandleLogin';
 import './LoginForm.css';
 import {
     Routes,
-    Route
+    Route,
+    BrowserRouter
   } from "react-router-dom";
 
 function Login(props) {
     return (
         <>
-        <HandleLogin setAuth = {props.setAuth} setUser = {props.setUser}/>
-        <Routes>
-            {!props.auth && (
-                <Route path="/success" exact element={<SuccessMessage eventName='Login'/>} />
-            )}
-            {props.auth && (
-                <Route path="/failure" exact element={<FailureMessage eventName='Login'/>} />
-            )}
-        </Routes>
-        <Footer />
+        <BrowserRouter>
+            <HandleLogin setAuth = {props.setAuth} setUser = {props.setUser}/>
+            <Routes>
+                {!props.auth && (
+                    <Route path="/success" exact element={<SuccessMessage eventName='Login'/>} />
+                )}
+                {props.auth && (
+                    <Route path="/failure" exact element={<FailureMessage eventName='Login'/>} />
+                )}
+            </Routes>
+            <Footer />
+        </BrowserRouter>
         </>
     )
     
